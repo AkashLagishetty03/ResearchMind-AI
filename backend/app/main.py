@@ -18,10 +18,27 @@ app = FastAPI(
     version="1.0.0"
 )
 
-# CORS configuration
+# ── CORS configuration ────────────────────────────────────────────────────────
+# Build the allowed origins list from env vars so no code change is needed
+# when the Vercel deployment URL is known.
+_origins: list[str] = ["http://localhost:5173", "http://localhost:3000"]
+
+if settings.FRONTEND_URL and settings.FRONTEND_URL not in _origins:
+    _origins.append(settings.FRONTEND_URL)
+
+# ALLOWED_ORIGINS accepts a comma-separated list of extra origins
+# e.g. "https://researchmind.vercel.app,https://researchmind-ai.vercel.app"
+if settings.ALLOWED_ORIGINS:
+    for origin in settings.ALLOWED_ORIGINS.split(","):
+        origin = origin.strip()
+        if origin and origin not in _origins:
+            _origins.append(origin)
+
+logger.info(f"CORS allowed origins: {_origins}")
+
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=[settings.FRONTEND_URL, "http://localhost:5173"],
+    allow_origins=_origins,
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
@@ -56,3 +73,8 @@ def read_root():
         "service": "ResearchMind AI API",
         "version": "1.0.0"
     }
+
+@app.get("/health")
+def health_check():
+    """Render health-check endpoint."""
+    return {"status": "ok"}
