@@ -1,0 +1,84 @@
+@import "tailwindcss";
+
+@theme {
+  --color-brand-bg: #FAFBFC;
+  --color-brand-card: #FFFFFF;
+  --color-brand-secondary: #F5F7FA;
+  --color-brand-primary: #4F46E5;
+  --color-brand-accent: #8B5CF6;
+  --color-brand-success: #10B981;
+  --color-brand-warning: #F59E0B;
+  --color-brand-text-primary: #111827;
+  --color-brand-text-secondary: #6B7280;
+
+  --shadow-premium: 0 4px 20px -2px rgba(17, 24, 37, 0.03), 0 2px 10px -1px rgba(17, 24, 37, 0.01);
+  --shadow-premium-lg: 0 10px 30px -4px rgba(17, 24, 37, 0.05), 0 4px 15px -2px rgba(17, 24, 37, 0.02);
+  --shadow-premium-xl: 0 20px 40px -6px rgba(17, 24, 37, 0.06), 0 8px 25px -4px rgba(17, 24, 37, 0.03);
+}
+
+/* Base styling overrides */
+@layer base {
+  body {
+    background-color: #FAFBFC;
+    color: #111827;
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+}
+
+/* Custom premium scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #FAFBFC;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #E5E7EB;
+  border-radius: 999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #D1D5DB;
+}
+
+/* Custom styles for our SaaS interface */
+.glass-panel {
+  background: rgba(255, 255, 255, 0.75);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(17, 24, 37, 0.06);
+}
+
+.glass-panel-glow {
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(79, 70, 229, 0.12);
+  box-shadow: 0 10px 30px -4px rgba(79, 70, 229, 0.04), 0 0 30px 0 rgba(79, 70, 229, 0.02);
+}
+
+/* Print specific styles for high quality PDF scaling */
+@media print {
+
+  .print-markdown h1,
+  .print-markdown h2,
+  .print-markdown h3,
+  .print-markdown h4,
+  .print-markdown h5,
+  .print-markdown p,
+  .print-markdown li {
+    color: #111827 !important;
+  }
+
+  .print-markdown pre,
+  .print-markdown code {
+    background-color: #f3f4f6 !important;
+    border-color: #e5e7eb !important;
+    color: #111827 !important;
+  }
+}

@@ -1,0 +1,35 @@
+# =============================================================
+# ResearchMind AI — Backend .gitignore
+# =============================================================
+
+# ── Environment / secrets ──────────────────────────────────
+.env
+*.env
+!*.env.example
+
+# ── SQLite databases ───────────────────────────────────────
+*.db
+*.db-shm
+*.db-wal
+*.sqlite
+*.sqlite3
+
+# ── Python bytecode & caches ───────────────────────────────
+__pycache__/
+*.py[cod]
+*$py.class
+*.pyo
+*.pyd
+
+# ── Virtual environments (if placed inside backend/) ───────
+venv/
+.venv/
+
+# ── Test artifacts ─────────────────────────────────────────
+.pytest_cache/
+.coverage
+htmlcov/
+
+# ── Misc ───────────────────────────────────────────────────
+*.log
+*.tmp
