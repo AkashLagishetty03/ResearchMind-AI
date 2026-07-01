@@ -41,7 +41,6 @@ From the project root:
 3. **Configure Environment Variables**:
    Create a `.env` file in the `backend/` directory (use `.env.example` as a template):
    ```env
-   GEMINI_API_KEY=your_gemini_key_here
    OPENROUTER_API_KEY=your_openrouter_key_here
    DATABASE_URL=sqlite+aiosqlite:///./researchmind.db
    APP_NAME="ResearchMind AI"
